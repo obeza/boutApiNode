@@ -1,0 +1,67 @@
+<ng-include src="'comp/topbar/topbar-tpl.html'"></ng-include>
+
+<div class="view">
+
+	<div class="row">
+	  <div class="col-md-8">
+		<div class="form-group">
+	    	
+	    	<input 
+	    		type="text" 
+	    		class="form-control" 
+	    		id="titre" 
+	    		placeholder="le titre de votre contenu"
+	    		ng-model="contenu.titre"
+	    	>
+	  	</div>
+
+		<div class="form-group pointer">
+
+			<div ng-hide="uploader.queue.length>0">
+				<label for="selectFile"  class="pointer">
+					<h2>Etape 2</h2>
+				<i class="fa fa-picture-o icon_space"></i>Ajouter un image bannière
+				<input type="file" id="selectFile" nv-file-select="" uploader="uploader" multiple="" class="hide">
+				</label>	
+			</div>		
+			<div ng-show="uploader.queue.length>0" ng-repeat="item in uploader.queue" ng-click="item.remove()">
+				<i class="fa fa-picture-o icon_space "></i>Supprimer la bannière
+			</div>
+			
+		</div>		
+
+
+		<text-angular 
+			ng-model="htmlVariable"
+			class="my-small-area"
+		>
+		</text-angular>	
+
+		<div class="bt-publier">
+			<button type="button" class="btn btn-danger">Publier le contenu</button>
+		</div>
+		
+{{htmlVariable}}
+
+	  </div>
+	  <div class="col-md-4">
+	  	<div class="smartphone">
+	  		<div class="preview">
+<div ng-repeat="item in uploader.queue" class="ng-scope">
+	  			<div ng-thumb="{ file: item._file, width:320 }" >
+	  				<canvas width="320px" height="100"></canvas>
+	  			</div>
+</div>
+	  			<h1>{{contenu.titre}}</h1>
+
+	  		<div class="htmlPreview" ng-bind-html="htmlVariable"></div>
+	  		</div>
+	  		
+	  	</div>
+
+	  </div>
+	</div>
+
+
+
+</div>

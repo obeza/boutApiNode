@@ -1,0 +1,61 @@
+
+
+.view{
+	padding: 70px 20px;
+}
+
+.btn-group{
+	margin-bottom: 4px;
+}
+.bt-publier{
+	text-align: right;
+	margin-top: 10px;
+}
+.smartphone{
+	background-image: url("../img/phone-case.png");
+    background-repeat: no-repeat;
+    width: 380px;
+    height: 810px;
+}
+.preview {
+	position: absolute;
+    top: 104px;
+    left: 33px;
+    z-index: 0;
+    width: 328px;
+    height: 576px;
+    border: 4px solid #22272d;
+    background-color: white;
+    overflow: auto;
+}
+.hide{
+    display: none;
+}
+.icon_space{
+    padding:8px;
+}
+.form-group.pointer, label.pointer{
+    cursor: pointer;
+    font-weight: 300;
+}
+
+.ta-editor {
+    min-height: 400px;
+    
+    overflow: auto;
+    font-family: inherit;
+    font-size: 100%;
+    margin:20px 0;
+}
+.ta-insert-video{
+    width:100%;
+}
+.editeur .ta-insert-video{
+    width: 500px;
+}
+.preview img{
+    width: 100%;
+}
+
+
+

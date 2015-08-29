@@ -21,6 +21,7 @@ router.route('/login')
 	        if (!user)
 	        	return res.json({ msg : 'erreur' });
 
+	        console.log('user ' + user)
 		    if (user.validPassword(req.body.passe)) {        	
 				var token = crypto.randomBytes(64).toString('hex');
 
@@ -36,8 +37,6 @@ router.route('/login')
 
 		        });
 
-
-
 				msg = { 
 					msg : 'ok',
 					token : jwtToken
@@ -46,7 +45,6 @@ router.route('/login')
 			}
 
 			res.json(msg);
-
 	        
 	    });
 	        
@@ -54,7 +52,7 @@ router.route('/login')
 	.get(function(req, res) {
 
 		//res.json ( { token : req.headers.token } );
-		var decoded = jwt.verify(req.headers.token, config.JWTKey );
+		var decoded = jwt.verify(req.headers.token, config.jwtKey );
 
         Users.findById(decoded.userId, function(err, user) {
             if (err)

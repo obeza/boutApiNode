@@ -7,7 +7,8 @@ var BoutiqueSchema   = new Schema({
     tel: String,
     infos: String,
     statut: { type: Number, enum : [0, 1], default : 1 },
-    created_at: { type: Date, default: Date.now }
+    created_at: { type: Date, default: Date.now },
+    credit_until: Date
 
 });
 

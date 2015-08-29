@@ -3,34 +3,33 @@ var router = express.Router();
 var Users     = require('../models/users.js');
 var Boutiques     = require('../models/boutiques.js');
 
-function isAuthAdmin(req, res, next) {
+var utils = require('../utils.js');
 
-    Users.findOne( {
-        _id : req.body.id,
-        statut : 2,
-        token : req.headers.token
-    })
-    .select('statut token')
-    .exec(function(err, user) {
+function IsAuthAdmin(req, res, next) {
 
-        if (err)
-            res.send(err);
+    var token = req.headers.token;
+    if ( token ){
+        utils.IsAuthenticated( token, function(userData){
 
-        if (user) 
-            next();
-        else
-            res.json( { msg : "erreur"} );
-         
-    });
- 
+            if ( userData.statut === 2)
+                next();
+            else {
+                res.sendStatus(401);
+            }
+
+        });
+    } else 
+        res.sendStatus(401);
+
 }
 
 
 router.route('/boutique')
 // create a bear (accessed at POST http://localhost:8080/api/bears)
-    .post( isAuthAdmin, function(req, res) {
+    .post( IsAuthAdmin, function(req, res) {
         
         var boutique = new Boutiques();
+
         boutique.nom = req.body.nom;
         boutique.tel = req.body.tel;
         boutique.infos = req.body.infos;
@@ -48,11 +47,11 @@ router.route('/boutique')
 
 		//res.json ( { token : req.headers.token } );
 
-        Contenus.find(function(err, contenus) {
+        Boutiques.find(function(err, boutiques) {
             if (err)
                 res.send(err);
 
-            res.json(contenus);
+            res.json(boutiques);
         });
 
     });

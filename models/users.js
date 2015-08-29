@@ -8,7 +8,7 @@ var UserSchema   = new Schema({
     email: String,
     tel: String,
     passe: String,
-    boutiqueId: Number,
+    boutiqueId: { type: Schema.ObjectId },
     statut: { type: Number, enum : [0, 1, 2], default : 0 },
     token: String,
     created_at: Date,
